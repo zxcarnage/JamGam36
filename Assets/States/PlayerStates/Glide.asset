@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9632ab073f4c3b849f201cb3c8e1b5, type: 3}
   m_Name: Glide
   m_EditorClassIdentifier: 
-  _glideDownSpeed: 3
-  _glideHorizontalSpeed: 10
+  _glideDownSpeed: 2
+  _glideHorizontalSpeed: 6

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FlyMovement
   m_EditorClassIdentifier: 
   _flightTime: 1.5
-  _horizontalFlySpeed: 10
-  _verticalFlySpeed: 6
+  _horizontalFlySpeed: 6
+  _verticalFlySpeed: 2
