@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 166393548}
   - component: {fileID: 166393549}
   - component: {fileID: 166393550}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ObstacleLil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -390,6 +391,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462dc67343fd4318ac02155792ca7980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1180412367}
+  _xOffset: 4
 --- !u!1 &656236661
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +658,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1180412367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8269011666730626514, guid: 546b15d3452f6204a9fe29dd168671ae, type: 3}
+  m_PrefabInstance: {fileID: 8429918226898473904}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7519984d6684ee3b1cb952d6b100c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185730561
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +715,7 @@ GameObject:
   - component: {fileID: 1268500645}
   - component: {fileID: 1268500646}
   - component: {fileID: 1268500647}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ObstacleGiant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +845,7 @@ GameObject:
   - component: {fileID: 1360196841}
   - component: {fileID: 1360196842}
   - component: {fileID: 1360196843}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ObstacleSpiked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
