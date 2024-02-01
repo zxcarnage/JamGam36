@@ -17,7 +17,7 @@ namespace StateMachine.States.GameStates
         {
             base.Enter(parent);
             _tutorialInputHandler = ServiceLocator.Instance.Get<TutorialInputHandler>();
-            ServiceLocator.Instance.Get<EventBus>().Subscribe<FlyUnlockedSignal>(_tutorialInputHandler.UnlockFly);
+            
         }
 
         public override void CaptureInput()

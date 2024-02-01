@@ -17,14 +17,17 @@ namespace StateMachine.States.PlayerStates
         private GroundCheck _groundCheck;
         private float _horizontal;
         private bool _inFly;
+        private bool _reverseGravity;
 
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
             _inFly = false;
+            _reverseGravity = false;
             if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
             if (!_groundCheck) _groundCheck = parent.GetComponent<GroundCheck>();
             ServiceLocator.Instance.Get<EventBus>().Subscribe<FlyStarted>(StartFly);
+            ServiceLocator.Instance.Get<EventBus>().Subscribe<ReverseGravitySignal>(ReverseGravity);
         }
 
         public override void CaptureInput()
@@ -44,18 +47,29 @@ namespace StateMachine.States.PlayerStates
 
         public override void TryChangeState()
         {
-            if(_inFly && _groundCheck.Ground())
-                _machine.SetState(typeof(FlyMovement));
+            if (_groundCheck.Ground())
+            {
+                if(_inFly)
+                    _machine.SetState(typeof(FlyMovement));
+                if(_reverseGravity)
+                    _machine.SetState(typeof(ReversedGravity));
+            }
+             
         }
 
         public override void Exit()
         {
-            ServiceLocator.Instance.Get<EventBus>().Unsubscribe<FlyStarted>(StartFly);
+            ServiceLocator.Instance.Get<EventBus>().Unsubscribe<ReverseGravitySignal>(ReverseGravity);
         }
 
         private void StartFly(FlyStarted signal)
         {
             _inFly = true;
+        }
+
+        private void ReverseGravity(ReverseGravitySignal reverseGravitySignal)
+        {
+            _reverseGravity = true;
         }
     }
 }

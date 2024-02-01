@@ -14,6 +14,8 @@ namespace Player
         {
             if(col.TryGetComponent(out FlyUnlockTrigger flyUnlockTrigger))
                 ServiceLocator.Instance.Get<EventBus>().Invoke(new FlyUnlockedSignal());
+            if(col.TryGetComponent(out ReverseGravityUnlockTrigger reverseGravityUnlockTrigger))
+                ServiceLocator.Instance.Get<EventBus>().Invoke(new ReversedGravityUnlockedSignal());
         }
     }
 }

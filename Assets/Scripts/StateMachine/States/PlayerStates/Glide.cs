@@ -33,7 +33,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void FixedUpdate()
         {
-            _rigidbody.velocity = new Vector2(_glideHorizontalSpeed * _horizontal, -1 * _glideDownSpeed);
+            _rigidbody.velocity = new Vector2(_glideHorizontalSpeed * _horizontal, -1 * _glideDownSpeed * _rigidbody.gravityScale);
         }
 
         public override void TryChangeState()

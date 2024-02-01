@@ -1,4 +1,7 @@
-﻿using Player;
+﻿using CustomEventBus;
+using CustomEventBus.Signals;
+using CustomServiceLocator;
+using Player;
 using UnityEngine;
 
 namespace StateMachine.States.PlayerStates
@@ -18,7 +21,6 @@ namespace StateMachine.States.PlayerStates
         {
             base.Enter(parent);
             _elapsedTime = 0f;
-            if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
         }
 
         public override void CaptureInput()
@@ -34,7 +36,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void FixedUpdate()
         {
-            _rigidbody.velocity = new Vector2(_horizontal * _horizontalFlySpeed, _verticalFlySpeed);
+            _rigidbody.velocity = new Vector2(_horizontal * _horizontalFlySpeed, _verticalFlySpeed * _rigidbody.gravityScale);
         }
 
         public override void TryChangeState()
@@ -45,7 +47,6 @@ namespace StateMachine.States.PlayerStates
 
         public override void Exit()
         {
-            
         }
     }
 }

@@ -10,6 +10,10 @@ namespace Player
     [RequireComponent(typeof(GroundCheck))]
     public class PlayerController : StateMachine<PlayerController>, IService
     {
+        [SerializeField] private SpriteRenderer _playerModel;
+
+        public SpriteRenderer PlayerModel => _playerModel;
+        
         private void Awake()
         {
             ServiceLocator.Instance.Register(this);
