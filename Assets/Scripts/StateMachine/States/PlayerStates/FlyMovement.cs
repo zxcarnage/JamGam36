@@ -39,7 +39,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void TryChangeState()
         {
-            if(_elapsedTime >= _flightTime)
+            if(_elapsedTime >= _flightTime || !_flyUp)
                 _machine.SetState(typeof(Glide));
         }
 
