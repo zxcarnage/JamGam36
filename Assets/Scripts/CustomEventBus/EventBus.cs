@@ -9,7 +9,8 @@ namespace CustomEventBus
     public class EventBus : IService
     {
         private Dictionary<string, List<CallbackWithPriority>> _signalCallbacks = new Dictionary<string, List<CallbackWithPriority>>();
-
+        private List<CallbackWithPriority> _tempList = new List<CallbackWithPriority>();
+        
         public void Subscribe<T>(Action<T> callback, int priority = 0)
         {
             string key = typeof(T).Name;
@@ -30,7 +31,8 @@ namespace CustomEventBus
             string key = typeof(T).Name;
             if (_signalCallbacks.ContainsKey(key))
             {
-                foreach (var obj in _signalCallbacks[key])
+                _tempList = new List<CallbackWithPriority>(_signalCallbacks[key]);
+                foreach (var obj in _tempList)
                 {
                     var callback = obj.Callback as Action<T>;
                     callback?.Invoke(signal);

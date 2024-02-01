@@ -18,18 +18,37 @@ namespace EntryPoints
         private TutorialInputHandler _tutorialInputHandler;
         private void Start()
         {
-            _eventBus = new CustomEventBus.EventBus();
-            _tutorialInputHandler = new TutorialInputHandler();
-            //Initializing tutorial entry point services
-            //Initializing Player
-            ServiceLocator.Instance.Register(_tutorialInputHandler);
-            ServiceLocator.Instance.Register(_eventBus);
-            ServiceLocator.Instance.Get<GameStateMachine>().Init(typeof(Tutorial));
-            ServiceLocator.Instance.Get<PlayerController>().Init(typeof(GroundMovement));
-            
+            CreateServices();
+            RegisterServices();
+            InitMachines();
+
+            SubscribeUnlocks();
+            Debug.Log("Tutorial scene initialized!");
+        }
+
+        private void CreateServices()
+        {
+            _eventBus = new EventBus();
+            _tutorialInputHandler = new TutorialInputHandler(_eventBus);
+        }
+
+        private void SubscribeUnlocks()
+        {
             _eventBus.Subscribe<FlyUnlockedSignal>(_tutorialInputHandler.UnlockFly);
             _eventBus.Subscribe<ReversedGravityUnlockedSignal>(_tutorialInputHandler.UnlockGravity);
-            Debug.Log("Tutorial scene initialized!");
+            _eventBus.Subscribe<CrawlUnlockedSignal>(_tutorialInputHandler.UnlockCrawl);
+        }
+        
+        private void RegisterServices()
+        {
+            ServiceLocator.Instance.Register(_tutorialInputHandler);
+            ServiceLocator.Instance.Register(_eventBus);
+        }
+
+        private void InitMachines()
+        {
+            ServiceLocator.Instance.Get<GameStateMachine>().Init(typeof(Tutorial));
+            ServiceLocator.Instance.Get<PlayerController>().Init(typeof(GroundMovement));
         }
 
         private void OnDisable()

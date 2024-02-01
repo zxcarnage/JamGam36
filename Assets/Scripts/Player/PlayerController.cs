@@ -7,7 +7,7 @@ namespace Player
 {
     [RequireComponent(typeof(PlayerTriggerHandler))]
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(GroundCheck))]
+    [RequireComponent(typeof(CollisionCheck))]
     public class PlayerController : StateMachine<PlayerController>, IService
     {
         [SerializeField] private SpriteRenderer _playerModel;

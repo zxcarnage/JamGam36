@@ -20,6 +20,7 @@ namespace StateMachine.States.PlayerStates
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
+            if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
             _elapsedTime = 0f;
         }
 

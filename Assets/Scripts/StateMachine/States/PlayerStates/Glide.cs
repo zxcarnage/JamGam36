@@ -10,7 +10,7 @@ namespace StateMachine.States.PlayerStates
         [SerializeField] private float _glideHorizontalSpeed;
 
         private Rigidbody2D _rigidbody;
-        private GroundCheck _groundCheck;
+        private CollisionCheck _collisionCheck;
 
         private float _horizontal;
         
@@ -18,7 +18,7 @@ namespace StateMachine.States.PlayerStates
         {
             base.Enter(parent);
             if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
-            if (!_groundCheck) _groundCheck = parent.GetComponent<GroundCheck>();
+            if (!_collisionCheck) _collisionCheck = parent.GetComponent<CollisionCheck>();
         }
 
         public override void CaptureInput()
@@ -38,7 +38,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void TryChangeState()
         {
-            if(_groundCheck.Ground())
+            if(_collisionCheck.Ground())
                 _machine.SetState(typeof(GroundMovement));
         }
 

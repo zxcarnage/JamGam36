@@ -10,16 +10,16 @@ namespace StateMachine.States.PlayerStates
         private Rigidbody2D _rigidbody;
         private SpriteRenderer _groundSpriteRenderer;
         private SpriteRenderer _spriteRenderer;
-        private GroundCheck _groundCheck;
+        private CollisionCheck _collisionCheck;
         private bool _reversed = false;
 
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
             if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
-            if (!_groundCheck) _groundCheck = parent.GetComponent<GroundCheck>();
+            if (!_collisionCheck) _collisionCheck = parent.GetComponent<CollisionCheck>();
             if (!_spriteRenderer) _spriteRenderer = parent.PlayerModel;
-            if(!_groundSpriteRenderer) _groundSpriteRenderer = _groundCheck.GetGroundSprite();
+            if(!_groundSpriteRenderer) _groundSpriteRenderer = _collisionCheck.GetGroundSprite();
             ReverseGravity();
             _machine.SetState(typeof(GroundMovement));
         }
