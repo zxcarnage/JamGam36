@@ -22,8 +22,8 @@ namespace StateMachine.States.PlayerStates
         {
             base.Enter(parent);
             _inFly = false;
-            if (!_rigidbody) parent.GetComponent<Rigidbody2D>();
-            if (!_groundCheck) parent.GetComponent<GroundCheck>();
+            if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
+            if (!_groundCheck) _groundCheck = parent.GetComponent<GroundCheck>();
             ServiceLocator.Instance.Get<EventBus>().Subscribe<FlyStarted>(StartFly);
         }
 
@@ -34,7 +34,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void Update()
         {
-            
+            Debug.Log(_groundCheck.Ground());
         }
 
         public override void FixedUpdate()

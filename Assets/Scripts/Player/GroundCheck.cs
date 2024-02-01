@@ -16,10 +16,10 @@ namespace Player
                 _collisionMask);
         }
 
-        private void OnGUI()
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(transform.position, Vector3.down * _radius);
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _radius);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace StateMachine.States.PlayerStates
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
-            if (!_rigidbody) parent.GetComponent<Rigidbody2D>();
-            if (!_groundCheck) parent.GetComponent<GroundCheck>();
+            if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
+            if (!_groundCheck) _groundCheck = parent.GetComponent<GroundCheck>();
         }
 
         public override void CaptureInput()

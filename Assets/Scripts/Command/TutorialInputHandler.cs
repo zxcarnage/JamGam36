@@ -16,7 +16,7 @@ namespace Command
 
         public void HandleInput()
         {
-            if(Input.GetButtonDown(KeyCode.Space.ToString()) && _flyUnlocked)
+            if(Input.GetKey(KeyCode.Space) && _flyUnlocked)
                 ServiceLocator.Instance.Get<EventBus>().Invoke(typeof(FlyStarted));
         }
     }

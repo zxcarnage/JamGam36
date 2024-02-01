@@ -18,12 +18,12 @@ namespace StateMachine.States.PlayerStates
         {
             base.Enter(parent);
             _elapsedTime = 0f;
-            if (!_rigidbody) parent.GetComponent<Rigidbody2D>();
+            if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
         }
 
         public override void CaptureInput()
         {
-            _flyUp = Input.GetButton(KeyCode.Space.ToString());
+            _flyUp = Input.GetKey(KeyCode.Space);
             _horizontal = Input.GetAxis("Horizontal");
         }
 
