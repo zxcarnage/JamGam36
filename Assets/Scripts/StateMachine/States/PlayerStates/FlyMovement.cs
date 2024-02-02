@@ -14,13 +14,19 @@ namespace StateMachine.States.PlayerStates
         [SerializeField] private float _verticalFlySpeed;
 
         private Rigidbody2D _rigidbody;
+        private Animator _animator;
         private bool _flyUp;
         private float _horizontal;
         private float _elapsedTime;
+        
+        private static readonly int InFly = Animator.StringToHash("InFly");
+
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
             if (!_rigidbody) _rigidbody = parent.GetComponent<Rigidbody2D>();
+            if (!_animator) _animator = parent.Animator;
+            _animator.SetBool(InFly, true);
             _elapsedTime = 0f;
         }
 
@@ -48,6 +54,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void Exit()
         {
+            _animator.SetBool(InFly, false);
         }
     }
 }

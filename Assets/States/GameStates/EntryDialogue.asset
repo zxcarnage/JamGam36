@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f47fea88874f57947d8df4df58e8e3, type: 3}
+  m_Name: EntryDialogue
+  m_EditorClassIdentifier: 
+  _dialogueJSON: {fileID: 4900000, guid: 953ebc3b6f2ac1b43977385dab02fe58, type: 3}
+  _secondFaceImage: {fileID: 21300000, guid: 647cfee64d3297345a5faa8f854901e5, type: 3}
+  _isTutorialStory: 1

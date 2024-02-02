@@ -32,6 +32,7 @@ namespace StateMachine.States.PlayerStates
             ServiceLocator.Instance.Get<EventBus>().Subscribe<ReverseGravitySignal>(ReverseGravity);
             ServiceLocator.Instance.Get<EventBus>().Subscribe<CrawlFrontSignal>(CrawlFront);
             ServiceLocator.Instance.Get<EventBus>().Subscribe<CrawlBackSignal>(CrawlBackwards);
+            ServiceLocator.Instance.Get<EventBus>().Subscribe<DialogueStartedSignal>(DialogueStarted);
         }
 
         private void Unsubscribe()
@@ -40,6 +41,7 @@ namespace StateMachine.States.PlayerStates
             ServiceLocator.Instance.Get<EventBus>().Unsubscribe<ReverseGravitySignal>(ReverseGravity);
             ServiceLocator.Instance.Get<EventBus>().Unsubscribe<CrawlFrontSignal>(CrawlFront);
             ServiceLocator.Instance.Get<EventBus>().Unsubscribe<CrawlBackSignal>(CrawlBackwards);
+            ServiceLocator.Instance.Get<EventBus>().Unsubscribe<DialogueStartedSignal>(DialogueStarted);
         }
 
         public override void CaptureInput()
@@ -89,6 +91,11 @@ namespace StateMachine.States.PlayerStates
         {
             if(_grounded)
                 _machine.SetState(typeof(ReversedGravity));
+        }
+
+        private void DialogueStarted(DialogueStartedSignal signal)
+        {
+            _machine.SetState(typeof(Cutscene));
         }
     }
 }

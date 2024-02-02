@@ -13,10 +13,11 @@ namespace StateMachine.States.GameStates
         private TutorialInputHandler _tutorialInputHandler;
         private bool _tutorialEnded = false;
         private bool _cutsceneStarted = false;
+        
         public override void Enter(GameStateMachine parent)
         {
             base.Enter(parent);
-            _tutorialInputHandler = ServiceLocator.Instance.Get<TutorialInputHandler>();
+            if(_tutorialInputHandler == null) _tutorialInputHandler = ServiceLocator.Instance.Get<TutorialInputHandler>();
             
         }
 
@@ -43,7 +44,7 @@ namespace StateMachine.States.GameStates
 
         public override void Exit()
         {
-            ServiceLocator.Instance.Get<EventBus>().Unsubscribe<FlyUnlockedSignal>(_tutorialInputHandler.UnlockFly);
+            
         }
     }
 }

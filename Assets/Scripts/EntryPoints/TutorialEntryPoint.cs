@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using CustomServiceLocator;
 using Player;
 using StateMachine.States.PlayerStates;
+using Cutscene = StateMachine.States.GameStates.Cutscene;
 
 namespace EntryPoints
 {
@@ -47,7 +48,7 @@ namespace EntryPoints
 
         private void InitMachines()
         {
-            ServiceLocator.Instance.Get<GameStateMachine>().Init(typeof(Tutorial));
+            ServiceLocator.Instance.Get<GameStateMachine>().Init(typeof(EntryDialogue));
             ServiceLocator.Instance.Get<PlayerController>().Init(typeof(GroundMovement));
         }
 
