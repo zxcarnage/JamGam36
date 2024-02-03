@@ -18,6 +18,10 @@ namespace Player
                 ServiceLocator.Instance.Get<EventBus>().Invoke(new ReversedGravityUnlockedSignal());
             if(col.TryGetComponent(out UnlockCrawlTrigger unlockCrawlTrigger))
                 ServiceLocator.Instance.Get<EventBus>().Invoke(new CrawlUnlockedSignal());
+            if(col.TryGetComponent(out HideTrigger hideTrigger))
+                ServiceLocator.Instance.Get<EventBus>().Invoke(new HideTutorialButtonSignal());
+            if(col.TryGetComponent(out EndTutorialTrigger endTutorialTrigger))
+                ServiceLocator.Instance.Get<EventBus>().Invoke(new EndTutorialDialogueSignal());
         }
     }
 }

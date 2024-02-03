@@ -18,6 +18,7 @@ namespace StateMachine.States.GameStates
         {
             base.Enter(parent);
             if(_tutorialInputHandler == null) _tutorialInputHandler = ServiceLocator.Instance.Get<TutorialInputHandler>();
+            ServiceLocator.Instance.Get<EventBus>().Subscribe<EndTutorialDialogueSignal>(SetTutorialEndedDialogue);
             
         }
 
@@ -44,7 +45,12 @@ namespace StateMachine.States.GameStates
 
         public override void Exit()
         {
-            
+            ServiceLocator.Instance.Get<EventBus>().Unsubscribe<EndTutorialDialogueSignal>(SetTutorialEndedDialogue);
+        }
+
+        private void SetTutorialEndedDialogue(EndTutorialDialogueSignal signal)
+        {
+            _machine.SetState(typeof(CandleRevealedDialogue));
         }
     }
 }

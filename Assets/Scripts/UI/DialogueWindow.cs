@@ -13,7 +13,7 @@ namespace UI
         [SerializeField] private TMP_Text _dialogueFace;
         [SerializeField] private Image _secondFace;
 
-        private void Start()
+        private void Awake()
         {
             ServiceLocator.Instance.Register(this);
             gameObject.SetActive(false);

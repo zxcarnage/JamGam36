@@ -11,7 +11,7 @@ namespace StateMachine
         
         private State<T> _activeState;
 
-        public void Init(Type entryStateType)
+        public virtual void Init(Type entryStateType)
         {
             SetState(entryStateType);
         }

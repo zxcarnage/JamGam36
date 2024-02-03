@@ -29,7 +29,13 @@ namespace Player
             ServiceLocator.Instance.Register(this);
         }
 
-        private void OnEnable()
+        public override void Init(Type entryStateType)
+        {
+            base.Init(entryStateType);
+            Subscribe();
+        }
+
+        private void Subscribe()
         {
             _eventBus = ServiceLocator.Instance.Get<EventBus>();
             _eventBus.Subscribe<FlyUnlockedSignal>(ShowFlyButton);
@@ -43,6 +49,7 @@ namespace Player
             _eventBus.Unsubscribe<FlyUnlockedSignal>(ShowFlyButton);
             _eventBus.Unsubscribe<ReversedGravityUnlockedSignal>(ShowReversedGravityButton);
             _eventBus.Unsubscribe<CrawlUnlockedSignal>(ShowCrawlButton);
+            _eventBus.Unsubscribe<HideTutorialButtonSignal>(HideButton);
         }
 
         //Вся ебаторию с ивент басом здесь убрать, сделал к дедлайну костыли

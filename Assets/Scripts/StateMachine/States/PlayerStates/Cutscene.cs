@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace StateMachine.States.PlayerStates
 {
+    [CreateAssetMenu(fileName = "Cutscene", menuName = "State/Player State/Cutscene", order = 0)]
     public class Cutscene : State<PlayerController>
     {
         public override void Enter(PlayerController parent)

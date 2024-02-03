@@ -1,15 +1,13 @@
-using System;
 using Command;
 using CustomEventBus;
 using CustomEventBus.Signals;
 using StateMachine.StateMachines;
 using StateMachine.States.GameStates;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using CustomServiceLocator;
 using Player;
 using StateMachine.States.PlayerStates;
-using Cutscene = StateMachine.States.GameStates.Cutscene;
+using Cutscene = StateMachine.States.PlayerStates.Cutscene;
 
 namespace EntryPoints
 {
@@ -17,10 +15,15 @@ namespace EntryPoints
     {
         private EventBus _eventBus;
         private TutorialInputHandler _tutorialInputHandler;
-        private void Start()
+
+        private void Awake()
         {
             CreateServices();
             RegisterServices();
+        }
+
+        private void Start()
+        {
             InitMachines();
 
             SubscribeUnlocks();
@@ -49,7 +52,7 @@ namespace EntryPoints
         private void InitMachines()
         {
             ServiceLocator.Instance.Get<GameStateMachine>().Init(typeof(EntryDialogue));
-            ServiceLocator.Instance.Get<PlayerController>().Init(typeof(GroundMovement));
+            ServiceLocator.Instance.Get<PlayerController>().Init(typeof(Cutscene));
         }
 
         private void OnDisable()

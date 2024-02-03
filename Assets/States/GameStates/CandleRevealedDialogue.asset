@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CandleRevealedDialogue
   m_EditorClassIdentifier: 
   _dialogueJSON: {fileID: 4900000, guid: e41eab12112ceb04c9203ebd8668a820, type: 3}
-  _secondFaceImage: {fileID: 0}
+  _secondFaceImage: {fileID: 21300000, guid: 647cfee64d3297345a5faa8f854901e5, type: 3}
   _isTutorialStory: 1
