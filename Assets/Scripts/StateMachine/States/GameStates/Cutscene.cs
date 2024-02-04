@@ -16,7 +16,7 @@ namespace StateMachine.States.GameStates
         //Костыль
         [SerializeField] private bool _isTutorialStory;
 
-        private DialogueWindow _dialogueWindow;
+        protected DialogueWindow _dialogueWindow;
         private Story _currentStory;
 
         private const string SPEAKER_TAG = "speaker";
@@ -50,12 +50,12 @@ namespace StateMachine.States.GameStates
         public override void Exit()
         {
             ExitDialogue();
+            ServiceLocator.Instance.Get<EventBus>().Invoke(new CutsceneEndedSignal());
         }
 
-        private void ExitDialogue()
+        protected void ExitDialogue()
         {
             _dialogueWindow.gameObject.SetActive(false);
-            ServiceLocator.Instance.Get<EventBus>().Invoke(new CutsceneEndedSignal());
         }
 
         private void EnterDialogue()
@@ -67,7 +67,7 @@ namespace StateMachine.States.GameStates
             TryContinueStory();
         }
 
-        private bool TryContinueStory()
+        protected bool TryContinueStory()
         {
             if (!_currentStory.canContinue)
                 return false;

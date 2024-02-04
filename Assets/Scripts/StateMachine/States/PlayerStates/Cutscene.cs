@@ -9,10 +9,13 @@ namespace StateMachine.States.PlayerStates
     [CreateAssetMenu(fileName = "Cutscene", menuName = "State/Player State/Cutscene", order = 0)]
     public class Cutscene : State<PlayerController>
     {
+        private SpriteDirectionSwapper _swapper;
         public override void Enter(PlayerController parent)
         {
             base.Enter(parent);
             ServiceLocator.Instance.Get<EventBus>().Subscribe<CutsceneEndedSignal>(EndCutscene);
+            if (!_swapper) _swapper = parent.GetComponent<SpriteDirectionSwapper>();
+            _swapper.enabled = false;
         }
 
         public override void CaptureInput()
@@ -37,6 +40,7 @@ namespace StateMachine.States.PlayerStates
 
         public override void Exit()
         {
+            _swapper.enabled = true;
             ServiceLocator.Instance.Get<EventBus>().Unsubscribe<CutsceneEndedSignal>(EndCutscene);
         }
 

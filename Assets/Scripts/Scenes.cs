@@ -2,5 +2,6 @@
 {
     Bootstrap,
     MainMenu,
+    MainGame,
     TutorialScene
 }

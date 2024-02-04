@@ -9,7 +9,6 @@ namespace EntryPoints
         {
             //Initializing main menu UI
             Debug.Log("Main menu initialized");
-            SceneManager.LoadScene(Scenes.TutorialScene.ToString());
         }
     }
 }
